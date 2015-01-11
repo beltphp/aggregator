@@ -71,4 +71,13 @@ interface AggregatorInterface
      * }
      */
     public function get($identifier, $type = null, $unique = null);
+
+    /**
+     * Get an array of data items contained by the given `sources`.
+     *
+     * @param array   $sources
+     * @param integer $limit
+     * @param integer $offset
+     */
+    public function find(array $sources, $limit, $offset);
 }
