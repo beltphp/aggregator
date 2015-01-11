@@ -20,15 +20,19 @@ class ArrayAggregator implements AggregatorInterface
      */
     public function add($source, $type, $unique, array $data, \DateTime $timestamp = null)
     {
-        $this->sources[$source][] = ($identifier = base64_encode(implode(':', [$source, $type, $unique])));
+        $timestamp = $timestamp ?: new \DateTime();
+
+        $this->sources[$source][$timestamp->format('U')] = ($identifier = base64_encode(implode(':', [$source, $type, $unique])));
 
         $this->data[$identifier]  = [
             'source' => $source,
             'type' => $type,
             'unique' => $unique,
             'data' => $data,
-            'timestamp' => $timestamp ?: new \DateTime(),
+            'timestamp' => $timestamp
         ];
+
+        ksort($this->sources[$source]);
 
         return $identifier;
     }
@@ -55,5 +59,23 @@ class ArrayAggregator implements AggregatorInterface
         }
 
         return $this->has($identifier) ? $this->data[$identifier] : null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function find(array $sources, $limit, $offset)
+    {
+        $items = array();
+
+        array_walk($sources, function ($source) use (&$items) {
+            $item = array_merge($items, $this->sources[$source]);
+        });
+
+        krsort($items);
+
+        return array_values(array_map(function ($identifier) {
+            return $this->get($identifier);
+        }, array_slice($items, $offset, $limit)));
     }
 }
