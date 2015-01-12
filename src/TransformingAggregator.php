@@ -75,6 +75,14 @@ class TransformingAggregator implements AggregatorInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function count(array $sources)
+    {
+        return $this->aggregator->count($sources);
+    }
+
+    /**
      * Register a transformer for the given `type`.
      *
      * @param string   $type        The type of items to register the

@@ -83,4 +83,14 @@ interface AggregatorInterface
      *                         to `0`).
      */
     public function find(array $sources, $limit = 25, $offset = 0);
+
+    /**
+     * Get the total number of items available in the given sources.
+     *
+     * @param array $sources An array of sources to get the number of items
+     *                       from.
+     *
+     * @return integer
+     */
+    public function count(array $sources);
 }

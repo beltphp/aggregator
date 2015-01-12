@@ -54,6 +54,7 @@ class TransformingAggregatorTest extends \PHPUnit_Framework_TestCase
         $this->aggregator->add('foo', 'baz', 'bar', ['key' => 'value'], new \DateTime('-6 minutes'));
 
         $items = $this->aggregator->find(['foo']);
+        $this->assertEquals(2, $this->aggregator->count(['foo']));
 
         $this->assertEquals(['value' => 'key'], $items[0]['data']);
         $this->assertEquals('alue', $items[1]['data']);

@@ -79,6 +79,14 @@ class IndexingAggregator implements AggregatorInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function count(array $sources)
+    {
+        return $this->aggregator->count($sources);
+    }
+
+    /**
      * @param string   $type
      * @param Callable $indexer
      */

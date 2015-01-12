@@ -81,4 +81,21 @@ class ArrayAggregator implements AggregatorInterface
             return $this->get($identifier);
         }, array_slice($items, $offset, $limit)));
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function count(array $sources)
+    {
+        $items   = array();
+        $sources = array_filter($sources, function ($source) {
+            return isset($this->sources[$source]);
+        });
+
+        array_walk($sources, function ($source) use (&$items) {
+            $items = array_merge($items, $this->sources[$source]);
+        });
+
+        return count($items);
+    }
 }

@@ -44,6 +44,7 @@ class ArrayAggregatorTest extends \PHPUnit_Framework_TestCase
         $this->aggregator->add('foo', 'baz', 'bar', ['key' => 'value'], new \DateTime('-10 minutes'));
 
         $items = $this->aggregator->find(['foo'], 25, 0);
+        $this->assertEquals(2, $this->aggregator->count(['foo']));
 
         $this->assertCount(2, $items);
         $this->assertEquals('foo', $items[0]['source']);

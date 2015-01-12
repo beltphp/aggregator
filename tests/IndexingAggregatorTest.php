@@ -36,6 +36,7 @@ class IndexingAggregatorTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->aggregator->has($index));
         $this->assertInternalType('array', $this->aggregator->get($index));
         $this->assertCount(6, $this->aggregator->find(['foo']));
+        $this->assertEquals(6, $this->aggregator->count(['foo']));
 
         $this->assertEquals(3, $count['bar']);
         $this->assertEquals(3, $count['baz']);
