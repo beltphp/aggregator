@@ -1,5 +1,9 @@
 {
     "name": "belt/aggregator",
+    "description": "Collecting everything",
+    "keywords": [ "aggregate", "aggregator" ],
+    "homepage": "https://github.com/beltphp/aggregator",
+    "license": "BSD-2-Clause",
     "authors": [
         {
             "name": "Ramon Kleiss",
