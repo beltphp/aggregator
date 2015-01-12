@@ -66,7 +66,10 @@ class ArrayAggregator implements AggregatorInterface
      */
     public function find(array $sources, $limit = 25, $offset = 0)
     {
-        $items = array();
+        $items   = array();
+        $sources = array_filter($sources, function ($source) {
+            return isset($this->sources[$source]);
+        });
 
         array_walk($sources, function ($source) use (&$items) {
             $items = array_merge($items, $this->sources[$source]);

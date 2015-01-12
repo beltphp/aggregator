@@ -44,6 +44,7 @@ class ArrayAggregatorTest extends \PHPUnit_Framework_TestCase
         $this->aggregator->add('foo', 'baz', 'bar', ['key' => 'value'], new \DateTime('-10 minutes'));
 
         $items = $this->aggregator->find(['foo'], 25, 0);
+
         $this->assertCount(2, $items);
         $this->assertEquals('foo', $items[0]['source']);
         $this->assertEquals('bar', $items[0]['type']);
@@ -53,6 +54,14 @@ class ArrayAggregatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('baz', $items[1]['type']);
         $this->assertEquals('bar', $items[1]['unique']);
         $this->assertEquals(['key' => 'value'], $items[1]['data']);
+    }
+
+    public function testDoNotThrowErrorForNonExistingSources()
+    {
+        $this->aggregator->add('foo', 'bar', 'baz', ['key' => 'value'], new \DateTime('-5 minutes'));
+        $this->aggregator->add('foo', 'baz', 'bar', ['key' => 'value'], new \DateTime('-10 minutes'));
+
+        $this->aggregator->find(['foo', 'bar', 'baz']);
     }
 
     public function testReturnFalseIfItemNotInAggregator()
