@@ -64,7 +64,7 @@ class ArrayAggregator implements AggregatorInterface
     /**
      * {@inheritDoc}
      */
-    public function find(array $sources, $limit, $offset)
+    public function find(array $sources, $limit = 25, $offset = 0)
     {
         $items = array();
 

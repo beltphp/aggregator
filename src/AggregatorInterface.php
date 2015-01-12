@@ -75,9 +75,12 @@ interface AggregatorInterface
     /**
      * Get an array of data items contained by the given `sources`.
      *
-     * @param array   $sources
-     * @param integer $limit
-     * @param integer $offset
+     * @param array   $sources An array of sources to pull data from.
+     * @param integer $limit   (optional) The maximum number of items to
+     *                         retrieve from the aggregator (defaults to `25`).
+     * @param integer $offset  (optional) The number of items to skip before
+     *                         items are retrieved from the aggregator (defaults
+     *                         to `0`).
      */
-    public function find(array $sources, $limit, $offset);
+    public function find(array $sources, $limit = 25, $offset = 0);
 }
