@@ -16,7 +16,8 @@
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.*"
+        "phpunit/phpunit": "4.*",
+        "predis/predis": "~1.0"
     },
     "autoload": {
         "psr-4": {
@@ -27,6 +28,9 @@
         "psr-4": {
             "Belt\\Aggregator\\Test\\": "tests"
         }
+    },
+    "suggest": {
+        "predis/predis": "Allows to use redis as an aggregate back-end"
     },
     "extra": {
         "branch-alias": {
