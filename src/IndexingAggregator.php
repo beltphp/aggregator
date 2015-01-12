@@ -71,6 +71,14 @@ class IndexingAggregator implements AggregatorInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function find(array $sources, $limit = 25, $offset = 0)
+    {
+        return $this->aggregator->find($sources, $limit, $offset);
+    }
+
+    /**
      * @param string   $type
      * @param Callable $indexer
      */
