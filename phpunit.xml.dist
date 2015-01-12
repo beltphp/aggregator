@@ -10,7 +10,7 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Underscore Test Suite">
+        <testsuite name="Aggregator Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

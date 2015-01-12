@@ -1,11 +1,32 @@
 {
-    "autoload": {
-        "psr-4": {
-            "Belt\\Aggregator\\": "src/",
-            "Belt\\Aggregator\\Tests\\": "tests/"
+    "name": "belt/aggregator",
+    "authors": [
+        {
+            "name": "Ramon Kleiss",
+            "email": "ramonkleiss@gmail.com",
+            "homepage": "http://ramonkleiss.nl",
+            "role": "Lead"
         }
+    ],
+    "require": {
+        "php": ">=5.4.0",
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.4"
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Belt\\Aggregator\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Belt\\Aggregator\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
     }
 }
