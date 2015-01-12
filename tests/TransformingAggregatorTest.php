@@ -6,13 +6,11 @@ use Belt\Aggregator\TransformingAggregator;
 
 class TransformingAggregatorTest extends \PHPUnit_Framework_TestCase
 {
-    private $wrapped;
     private $aggregator;
 
     public function setup()
     {
-        $this->wrapped    = new ArrayAggregator();
-        $this->aggregator = new TransformingAggregator($this->wrapped);
+        $this->aggregator = new TransformingAggregator(new ArrayAggregator());
     }
 
     public function testTransformSingleItemsRequestedFromAggregator()
