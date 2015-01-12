@@ -38,6 +38,23 @@ class ArrayAggregatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new \DateTime(), $items[0]['timestamp']);
     }
 
+    public function testFind()
+    {
+        $this->aggregator->add('foo', 'bar', 'baz', ['key' => 'value'], new \DateTime('-5 minutes'));
+        $this->aggregator->add('foo', 'baz', 'bar', ['key' => 'value'], new \DateTime('-10 minutes'));
+
+        $items = $this->aggregator->find(['foo'], 25, 0);
+        $this->assertCount(2, $items);
+        $this->assertEquals('foo', $items[0]['source']);
+        $this->assertEquals('bar', $items[0]['type']);
+        $this->assertEquals('baz', $items[0]['unique']);
+        $this->assertEquals(['key' => 'value'], $items[0]['data']);
+        $this->assertEquals('foo', $items[1]['source']);
+        $this->assertEquals('baz', $items[1]['type']);
+        $this->assertEquals('bar', $items[1]['unique']);
+        $this->assertEquals(['key' => 'value'], $items[1]['data']);
+    }
+
     public function testReturnFalseIfItemNotInAggregator()
     {
         $this->assertFalse($this->aggregator->has('foo'));

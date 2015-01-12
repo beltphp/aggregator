@@ -69,7 +69,7 @@ class ArrayAggregator implements AggregatorInterface
         $items = array();
 
         array_walk($sources, function ($source) use (&$items) {
-            $item = array_merge($items, $this->sources[$source]);
+            $items = array_merge($items, $this->sources[$source]);
         });
 
         krsort($items);
